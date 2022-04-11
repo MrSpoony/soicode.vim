@@ -32,6 +32,9 @@ as the previous file without the file ending.
   After that the output of the program for each sample will be shown in a new tab.
 
 - You can add a template into the current file with the `:ISOInsertTemplate` command.
+  If you set the `g:soicode_auto_insert_template` option to 1 in your config file
+  the template will automatically be inserted if you open a new cpp file in a directory
+  that contains the word `soi`
 
 ### Todo
 
