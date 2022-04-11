@@ -21,7 +21,13 @@ if (stridx(path, soi) < 0 || invalidfileending)
     finish
 endif
 
-" Commands
+
+if exists("g:soicode_auto_insert_template") && g:soicode_auto_insert_template
+    autocmd BufNewFile *.cpp call soicode#InsertTemplate()
+endif
+
+
+" Command
 command! -nargs=1 -complete=customlist,soicode#ListOfSamples
             \ SOIRunOneSample
             \ call soicode#RunSample(<f-args>)
