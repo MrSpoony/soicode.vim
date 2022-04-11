@@ -54,6 +54,10 @@ function! soicode#RunSample(sample)
     write
 endfunction
 
+function! soicode#InsertTemplate()
+    read ../helper/soi.cpp
+endfunction
+
 function! s:compileCppFile()
     let output = system("g++ " . s:cppflags . expand('%:p') ." -o " . expand("%:p:r"))
     return output

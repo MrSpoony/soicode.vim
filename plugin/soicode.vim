@@ -12,12 +12,23 @@ if exists("g:loaded_soicode")
 endif
 let g:loaded_soicode = 1
 
+let soi = "soi"
+let path = tolower(expand('%:p:h'))
+
+if (stridx(path, soi) < 0)
+    finish
+endif
+
+" Commands
 command! -nargs=1 -complete=customlist,soicode#ListOfSamples
             \ RunOneSample
             \ call soicode#RunSample(<f-args>)
-command!
+command! -nargs=0
             \ RunAllSamples
             \ call soicode#RunAllSamples()
-command!
+command! -nargs=0
             \ CreateStoml
             \ call soicode#CreateStoml()
+command! -nargs=0
+            \ InsertSOITemplate
+            \ call soicode#InsertTemplate()
