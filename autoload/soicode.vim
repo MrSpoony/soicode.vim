@@ -55,7 +55,8 @@ function! soicode#RunSample(sample)
 endfunction
 
 function! soicode#InsertTemplate()
-    read ../helper/soi.cpp
+    let s:plugindir = expand('<sfile>:p:h:h')
+    execute "read " . s:plugindir
 endfunction
 
 function! s:compileCppFile()
