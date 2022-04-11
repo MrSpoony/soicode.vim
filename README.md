@@ -25,11 +25,16 @@ as the previous file without the file ending.
   After that the output of the program will be shown in a new tab.
 
 - You can run all samples from the `.stoml` file
-  with the `SOI:RunAllSamples` command.
+  with the `:SOIRunAllSamples` command.
   The cpp file will be compiled and run with the input
   of all the declared samples from the `.stoml` file.
 
   After that the output of the program for each sample will be shown in a new tab.
+
+- You can run your code with own input with the `:SOIRunWithOwnInput` command.
+  Then the window will split and you can type in your input,
+  the output will be printend to this split and the split will disappear
+  when you press enter after the program exits.
 
 - You can add a template into the current file with the `:ISOInsertTemplate` command.
   If you set the `g:soicode_auto_insert_template` option to 1 in your config file
@@ -41,7 +46,7 @@ as the previous file without the file ending.
 - [x] Create a `.stoml` file with the given in- and outputs.
 - [x] Run one sample from the `.stoml` file.
 - [x] Run all samples from the `.stoml` file.
-- [ ] Run with manual input
+- [x] Run with manual input
 - [ ] Debug code
 - [x] Insert a template
 
