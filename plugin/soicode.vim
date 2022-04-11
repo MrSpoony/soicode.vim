@@ -23,14 +23,14 @@ endif
 
 " Commands
 command! -nargs=1 -complete=customlist,soicode#ListOfSamples
-            \ RunOneSample
+            \ SOIRunOneSample
             \ call soicode#RunSample(<f-args>)
 command! -nargs=0
-            \ RunAllSamples
+            \ SOIRunAllSamples
             \ call soicode#RunAllSamples()
 command! -nargs=0
-            \ CreateStoml
+            \ SOICreateStoml
             \ call soicode#CreateStoml()
 command! -nargs=0
-            \ InsertSOITemplate
+            \ SOIInsertTemplate
             \ call soicode#InsertTemplate()

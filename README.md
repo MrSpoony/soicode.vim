@@ -10,7 +10,7 @@ inside of vim.
 This plugin only activates if you are in a working directory which contains
 the word `soi`.
 
-- You can Create  a `.stoml` file with the `:CreateStoml` command.
+- You can Create  a `.stoml` file with the `:SOICreateStoml` command.
   It automatically pastes your clipboard to this file,
   so you have to copy the `.stoml` file first.
 
@@ -18,20 +18,20 @@ the word `soi`.
 as the previous file without the file ending.
 
 - You can run one sample from the `.stoml` file
-  with the `:RunOneSample <sample>` command.
+  with the `:SOIRunOneSample <sample>` command.
   The cpp file will be compiled and run with the input
   from the `<sample>.input` value from the `.stoml` file.
 
   After that the output of the program will be shown in a new tab.
 
 - You can run all samples from the `.stoml` file
-  with the `:RunAllSamples` command.
+  with the `SOI:RunAllSamples` command.
   The cpp file will be compiled and run with the input
   of all the declared samples from the `.stoml` file.
 
   After that the output of the program for each sample will be shown in a new tab.
 
-- You can add a template into the current file with the `:InsertSOITemplate` command.
+- You can add a template into the current file with the `:ISOInsertTemplate` command.
 
 ### Todo
 
