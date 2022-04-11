@@ -35,7 +35,7 @@ function! soicode#InsertTemplate()
 endfunction
 
 function! soicode#LoadKeybindings()
-    nnoremap <leader>rs :SOIRunOneSample <Tab>
+    nnoremap <leader>rs :SOIRunOneSample
     nnoremap <leader>ra :SOIRunAllSamples<CR>
     nnoremap <leader>ro :SOIRunWithOwnInput<CR>
     nnoremap <leader>st :SOIInsertTemplate<CR>

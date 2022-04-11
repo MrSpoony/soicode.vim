@@ -41,6 +41,19 @@ as the previous file without the file ending.
   the template will automatically be inserted if you open a new cpp file in a directory
   that contains the word `soi`
 
+- If you set the `g:soicode_use_predefined_keybindings` option
+  to 1 in your config file some keybindings will be automatically loaded.
+  These bindings are:
+
+  ```vim
+  nnoremap <leader>rs :SOIRunOneSample
+  nnoremap <leader>ra :SOIRunAllSamples<CR>
+  nnoremap <leader>ro :SOIRunWithOwnInput<CR>
+  nnoremap <leader>st :SOIInsertTemplate<CR>
+  nnoremap <leader>ct :SOICreateStoml <CR>
+  nnoremap <leader>et :SOIEditStoml <CR>
+  ```
+
 ### Todo
 
 - [x] Create a `.stoml` file with the given in- and outputs.
