@@ -1,5 +1,7 @@
 let s:cppflags = "-Wall -Wextra -fdiagnostics-color=never -Wno-sign-compare -std=c++20 -O2 -static "
 
+let s:plugindir = expand('<sfile>:p:h:h')
+
 function! soicode#RunAllSamples()
     let compiler = s:compileCppFile()
     let filename = expand('%:p:r')
@@ -55,8 +57,10 @@ function! soicode#RunSample(sample)
 endfunction
 
 function! soicode#InsertTemplate()
-    let s:plugindir = expand('<sfile>:p:h:h')
-    execute "read " . s:plugindir
+    let template = s:plugindir . "/template/soi.cpp"
+    1,$d
+    execute "read " . template
+    execute "normal! kddG3kA"
 endfunction
 
 function! s:compileCppFile()
