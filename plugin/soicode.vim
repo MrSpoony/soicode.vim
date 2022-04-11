@@ -10,7 +10,7 @@
 if exists("g:loaded_soicode")
     finish
 endif
-let g:loaded_soicode-vim = 1
+let g:loaded_soicode = 1
 
 command! -nargs=1 -complete=customlist,soicode#ListOfSamples
             \ RunOneSample
