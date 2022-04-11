@@ -17,7 +17,7 @@ let path = tolower(expand('%:p:h'))
 let fileending = expand('%:e')
 let invalidfileending = stridx(fileending, 'cpp') < 0 && stridx(fileending, 'stoml') < 0
 
-if (stridx(path, soi) < 0 && invalidfileending)
+if (stridx(path, soi) < 0 || invalidfileending)
     finish
 endif
 
