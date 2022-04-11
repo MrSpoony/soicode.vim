@@ -1,10 +1,9 @@
-
 let s:cppflags = "-Wall -Wextra -fdiagnostics-color=never -Wno-sign-compare -std=c++20 -O2 -static "
 
 function! soicode#RunAllSamples()
     let compiler = s:compileCppFile()
     let filename = expand('%:p:r')
-    let samples = ListOfSamples()
+    let samples = soicode#ListOfSamples()
     split output
     1,$d
     if trim(compiler) != ""
