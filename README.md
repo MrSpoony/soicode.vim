@@ -5,10 +5,24 @@ My implementation of the soicode
 made for the [Swiss Olympiad in Informatics](https://soi.ch).
 inside of vim.
 
-## Features
-
 This plugin only activates if you are in a working directory which contains
 the word `soi`.
+
+## TL;DR
+
+Install the plugin and put the following two lines in your `.vimrc`/`init.vim`
+
+```vim
+let g:soicode_auto_insert_template = 1
+let g:soicode_use_predefined_keybindings = 1
+```
+
+Now you can create a stoml file from your clipboard with `<leader>ct`,
+insert a template with `<leader>st`,
+run all the samples with `<leader>ra` and
+run with own input with `<leader>ro`
+
+## Features
 
 - You can Create  a `.stoml` file with the `:SOICreateStoml` command.
   It automatically pastes your clipboard to this file,
