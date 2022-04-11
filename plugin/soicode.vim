@@ -26,6 +26,9 @@ if exists("g:soicode_auto_insert_template") && g:soicode_auto_insert_template
     autocmd BufNewFile *.cpp call soicode#InsertTemplate()
 endif
 
+if exists("g:soicode_use_predefined_keybindings") && g:soicode_use_predefined_keybindings
+    call soicode#LoadKeybindings()
+endif
 
 " Command
 command! -nargs=1 -complete=customlist,soicode#ListOfSamples
@@ -40,6 +43,9 @@ command! -nargs=0
 command! -nargs=0
             \ SOICreateStoml
             \ call soicode#CreateStoml()
+command! -nargs=0
+            \ SOIEditStoml
+            \ call soicode#EditStoml()
 command! -nargs=0
             \ SOIInsertTemplate
             \ call soicode#InsertTemplate()

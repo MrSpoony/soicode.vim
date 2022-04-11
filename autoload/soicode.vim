@@ -9,6 +9,11 @@ function! soicode#CreateStoml()
     write
 endfunction
 
+function! soicode#EditStoml()
+    let file = expand('%:p:r') . '.stoml'
+    execute 'edit ' . file
+endfunction
+
 function! soicode#ListOfSamples(A = "", B = "", C = "")
     let file = readfile(expand('%:p:r') . '.stoml')
     let samples = []
@@ -29,7 +34,17 @@ function! soicode#InsertTemplate()
     execute "normal! kddG3kA"
 endfunction
 
+function! soicode#LoadKeybindings()
+    nnoremap <leader>rs :SOIRunOneSample <Tab>
+    nnoremap <leader>ra :SOIRunAllSamples<CR>
+    nnoremap <leader>ro :SOIRunWithOwnInput<CR>
+    nnoremap <leader>st :SOIInsertTemplate<CR>
+    nnoremap <leader>ct :SOICreateStoml <CR>
+    nnoremap <leader>et :SOIEditStoml <CR>
+endfunction
+
 function! soicode#RunAllSamples()
+    write
     let compiler = s:compileCppFile()
     let filename = expand('%:p:r')
     let samples = soicode#ListOfSamples()
@@ -48,6 +63,7 @@ function! soicode#RunAllSamples()
 endfunction
 
 function! soicode#RunSample(sample)
+    write
     let compiler = s:compileCppFile()
     let filename = expand('%:p:r')
     split output
@@ -64,6 +80,7 @@ function! soicode#RunSample(sample)
 endfunction
 
 function! soicode#RunWithOwnInput()
+    write
     let compiler = s:compileCppFile()
     echo compiler
     vsplit
