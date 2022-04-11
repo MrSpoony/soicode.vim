@@ -2,24 +2,6 @@ let s:cppflags = "-Wall -Wextra -fdiagnostics-color=never -Wno-sign-compare -std
 
 let s:plugindir = expand('<sfile>:p:h:h')
 
-function! soicode#RunAllSamples()
-    let compiler = s:compileCppFile()
-    let filename = expand('%:p:r')
-    let samples = soicode#ListOfSamples()
-    split output
-    1,$d
-    if trim(compiler) != ""
-        execute "normal! iCompiler:\n" . compiler . "\<Esc>"
-        let linenum = line('.')
-        call matchaddpos("Error", [linenum]) 
-    else
-        for sample in samples
-            call s:runOneSample(sample, filename)
-        endfor
-    endif
-    write
-endfunction
-
 function! soicode#CreateStoml()
     let file = expand('%:p:r') . '.stoml'
     execute 'edit ' . file
@@ -40,6 +22,31 @@ function! soicode#ListOfSamples(A = "", B = "", C = "")
     return samples
 endfunction
 
+function! soicode#InsertTemplate()
+    let template = s:plugindir . "/template/soi.cpp"
+    1,$d
+    execute "read " . template
+    execute "normal! kddG3kA"
+endfunction
+
+function! soicode#RunAllSamples()
+    let compiler = s:compileCppFile()
+    let filename = expand('%:p:r')
+    let samples = soicode#ListOfSamples()
+    split output
+    1,$d
+    if trim(compiler) != ""
+        execute "normal! iCompiler:\n" . compiler . "\<Esc>"
+        let linenum = line('.')
+        call matchaddpos("Error", [linenum]) 
+    else
+        for sample in samples
+            call s:runOneSample(sample, filename)
+        endfor
+    endif
+    write
+endfunction
+
 function! soicode#RunSample(sample)
     let compiler = s:compileCppFile()
     let filename = expand('%:p:r')
@@ -56,11 +63,11 @@ function! soicode#RunSample(sample)
     write
 endfunction
 
-function! soicode#InsertTemplate()
-    let template = s:plugindir . "/template/soi.cpp"
-    1,$d
-    execute "read " . template
-    execute "normal! kddG3kA"
+function! soicode#RunWithOwnInput()
+    let compiler = s:compileCppFile()
+    echo compiler
+    vsplit
+    execute "term " . expand('%:p:r')
 endfunction
 
 function! s:compileCppFile()

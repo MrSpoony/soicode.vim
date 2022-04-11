@@ -35,6 +35,9 @@ command! -nargs=0
             \ SOIRunAllSamples
             \ call soicode#RunAllSamples()
 command! -nargs=0
+            \ SOIRunWithOwnInput
+            \ call soicode#RunWithOwnInput()
+command! -nargs=0
             \ SOICreateStoml
             \ call soicode#CreateStoml()
 command! -nargs=0
