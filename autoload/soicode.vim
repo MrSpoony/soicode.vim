@@ -1,4 +1,4 @@
-function! RunAllSamples()
+function! soicode#RunAllSamples()
     let compiler = s:compileCppFile()
     let filename = expand('%:p:r')
     let samples = ListOfSamples()
@@ -16,14 +16,14 @@ function! RunAllSamples()
     write
 endfunction
 
-function! CreateStoml()
+function! soicode#CreateStoml()
     let file = expand('%:p:r') . '.stoml'
     execute 'edit ' . file
     execute "normal! i\<C-r>+\<Esc>"
     write
 endfunction
 
-function! ListOfSamples(A = "", B = "", C = "")
+function! soicode#ListOfSamples(A = "", B = "", C = "")
     let file = readfile(expand('%:p:r') . '.stoml')
     let samples = []
     for line in file
@@ -36,7 +36,7 @@ function! ListOfSamples(A = "", B = "", C = "")
     return samples
 endfunction
 
-function! RunSample(sample)
+function! soicode#RunSample(sample)
     let compiler = s:compileCppFile()
     let filename = expand('%:p:r')
     split output
