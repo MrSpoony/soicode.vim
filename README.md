@@ -41,3 +41,13 @@ as the previous file without the file ending.
 - [ ] Run with manual input
 - [ ] Debug code
 - [x] Insert a template
+
+## Installation
+
+You can easily install the plugin with your favourite package manager.
+
+For vim-plug this would be:
+
+```vim
+Plug 'MrSpoony/soicode.vim'
+```
