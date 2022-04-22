@@ -1,5 +1,10 @@
 # soicode.vim
 
+VERY WIP
+You can use the plugin if you want but excpect some bugs,
+for example in the listing of the samples there can be bugs,
+I'll fix them when I have the time to do so...
+
 My implementation of the soicode
 [vscode plugin](https://marketplace.visualstudio.com/items?itemName=swissolyinfo.soicode)
 made for the [Swiss Olympiad in Informatics](https://soi.ch).
