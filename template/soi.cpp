@@ -31,6 +31,24 @@ typedef vector<PII> VII;
 typedef vector<VI> VVI;
 typedef vector<VII> VVII;
 
+template<typename T1, typename T2>
+istream& operator>>(istream &istream, pair<T1, T2> &p) {
+    return istream >> p.first >> p.second;
+}
+template<typename T>
+istream& operator>>(istream &istream, vector<T> &v) {
+    for (auto &it : v) cin >> it;
+    return istream;
+}
+template<typename T1, typename T2>
+ostream& operator<<(ostream &ostream, pair<T1, T2> &p) {
+    return ostream << p.first << " " << p.second;
+}
+template<typename T>
+ostream& operator<<(ostream &ostream, vector<T> &v) {
+    for (auto &it : v) cout << it << " ";
+    return ostream;
+}
 
 
 int main() {
