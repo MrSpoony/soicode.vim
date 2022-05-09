@@ -17,16 +17,22 @@ let path = tolower(expand('%:p:h'))
 let fileending = expand('%:e')
 let invalidfileending = stridx(fileending, 'cpp') < 0 && stridx(fileending, 'stoml') < 0
 
-if (stridx(path, soi) < 0 || invalidfileending)
-    finish
+if (exists("g:soicode_enable_all_cpp_files") && g:soicode_enable_all_cpp_files)
+    if (invalidfileending)
+        finish
+    endif
+else
+    if (stridx(path, soi) < 0 || invalidfileending)
+        finish
+    endif
 endif
 
 
-if exists("g:soicode_auto_insert_template") && g:soicode_auto_insert_template
+if (exists("g:soicode_auto_insert_template") && g:soicode_auto_insert_template)
     autocmd BufNewFile *.cpp call soicode#InsertTemplate()
 endif
 
-if exists("g:soicode_use_predefined_keybindings") && g:soicode_use_predefined_keybindings
+if (exists("g:soicode_use_predefined_keybindings") && g:soicode_use_predefined_keybindings)
     call soicode#LoadKeybindings()
 endif
 

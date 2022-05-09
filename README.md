@@ -56,9 +56,10 @@ as the previous file without the file ending.
   when you press enter after the program exits.
 
 - You can add a template into the current file with the `:ISOInsertTemplate` command.
-  If you set the `g:soicode_auto_insert_template` option to 1 in your config file
+  If you set the `g:soicode_auto_insert_template` option to `1` in your config file
   the template will automatically be inserted if you open a new cpp file in a directory
-  that contains the word `soi`
+  that contains the word `soi` if you want the soi commands to be available everywhere
+  set the `g:soicode_enable_all_cpp_files` option to `1`
 
 - If you set the `g:soicode_use_predefined_keybindings` option
   to 1 in your config file some keybindings will be automatically loaded.
