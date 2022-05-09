@@ -104,7 +104,9 @@ function! s:runOneSample(sample, filename)
     let linenum = line('.')-1
     call matchaddpos("DiagnosticInfo", [linenum]) 
 
-    if trim(expected) == trim(output)
+    let realExpected = trim(substitute(expected, "[ \r\n]\\+", " ", "g"))
+    let realOutput = trim(substitute(output,     "[ \r\n]\\+", " ", "g"))
+    if realExpected == realOutput
         execute "normal! iSample '" . a:sample . "' successful!\n\<Esc>"
         let linenum = line('.')-1
         call matchaddpos("Title", [linenum]) 
@@ -113,14 +115,15 @@ function! s:runOneSample(sample, filename)
         let linenum = line('.')-1
         call matchaddpos("DiagnosticUnderlineError", [linenum]) 
 
-        execute "normal! iExpected:\n" . expected . "\n\<Esc>"
+        " execute "normal! iExpected:\n" . expected . "\n\<Esc>"
+        execute "normal! iExpected:\n" . realExpected . "\n\<Esc>"
         call matchaddpos("Todo", [linenum+1]) 
         let currline = line('.')-1
         for line in range(linenum+2, currline)
             call matchaddpos("Function", [line]) 
         endfor
         let linenum = currline
-        execute "normal! iActual:\n" . trim(output) . "\n\<Esc>"
+        execute "normal! iActual:\n" . realOutput . "\n\<Esc>"
         call matchaddpos("Todo", [linenum+1]) 
         let currline = line('.')-1
         for line in range(linenum+2, currline)
