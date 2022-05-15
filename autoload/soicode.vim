@@ -30,6 +30,12 @@ endfunction
 function! soicode#InsertTemplate()
     let template = s:plugindir . "/template/soi.cpp"
     1,$d
+    if filereadable(expand("~/templates/soi.cpp"))
+        let template =  "~/tmeplates/soi.cpp"
+    endif
+    if filereadable(expand("~/.config/nvim/templates/soi.cpp"))
+        let template =  "~/.config/nvim/templates/soi.cpp"
+    endif
     execute "read " . template
     execute "normal! kddG3kA"
 endfunction

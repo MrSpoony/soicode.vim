@@ -60,6 +60,12 @@ as the previous file without the file ending.
   the template will automatically be inserted if you open a new cpp file in a directory
   that contains the word `soi` if you want the soi commands to be available everywhere
   set the `g:soicode_enable_all_cpp_files` option to `1`
+  
+- You can set your own template in the 
+  `~/templates` or the `~/.config/nvim/templates` directory.
+  You have to name your template `soi.cpp`,
+  if there is a templtate found in one of the directories
+  the initial one gets replaced by this.
 
 - If you set the `g:soicode_use_predefined_keybindings` option
   to 1 in your config file some keybindings will be automatically loaded.
