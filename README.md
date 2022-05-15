@@ -100,8 +100,17 @@ run with own input with `<leader>ro`
 
 You can easily install the plugin with your favourite package manager.
 
-For vim-plug this would be:
-
-```vim
-Plug 'MrSpoony/soicode.vim'
-```
+<details>
+  <summary>vim-plug</summary>
+  
+  ```vim
+  Plug 'MrSpoony/soicode.vim' { 'do': './install.sh' }
+  ```
+</details>
+<details>
+  <summary>Packer</summary>
+  
+  ```
+  use 'MrSpoony/soicode.vim' { run = './install.sh' }
+  ```
+</details>
