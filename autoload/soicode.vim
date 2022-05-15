@@ -49,16 +49,19 @@ function! soicode#LoadKeybindings()
     nnoremap <leader>et :SOIEditStoml <CR>
 endfunction
 
-function! soicode#MakeClangDFile(file)
-    let l:filepath = a:file
-    let l:path = l:filepath
-    while stridx(l:filepath, "soi") >= 0
+function! soicode#MakeClangDFile(cwd)
+    if file == ""
+        let l:path = expand("%:p:h")
+        call s:createClangDFile(l:path)
+    else
+        let l:filepath = a:cwd
         let l:path = l:filepath
-        let l:filepath = l:filepath[:-2]
-    endwhile
-    " execute "!touch " . l:path . "/.clangd"
-    let compileFlags = "CompileFlags:\\n" . "  Add:\\n" . "    - \"" . s:soiheader . "\""
-    " execute "!echo '" . compileFlags ."' > " . l:path . "/.clangd"
+        while stridx(l:filepath, "soi") >= 0
+            let l:path = l:filepath
+            let l:filepath = l:filepath[:-2]
+        endwhile
+        call s:createClangDFile(l:path)
+    endif
 endfunction
 
 function! soicode#RunAllSamples()
@@ -156,4 +159,10 @@ function! s:runOneSample(sample, filename)
         endfor
     endif
     execute "normal! i\n\<Esc>"
+endfunction
+
+function! s:createClangDFile(path)
+    let compileFlags = "CompileFlags:\\n" . "  Add:\\n" . "    - \"" . s:soiheader . "\""
+    execute "!touch " . a:path . "/.clangd"
+    execute "!echo '" . compileFlags ."' > " . a:path . "/.clangd"
 endfunction

@@ -27,13 +27,19 @@ else
     endif
 endif
 
-if (exists("g:soicode_make_clangdfile_on_all_cpp_files") && g:soicode_make_clangdfile_on_all_cpp_files)
-    call soicode#MakeClangDFile(path)
-else
-    if (stridx(path, soi) < 0 || invalidfileending)
-        finish
+if (!exists("g:soicode_no_clangdfile") || !g:soicode_no_clangdfile)
+    if (exists("g:soicode_make_clangdfile_on_all_cpp_files") && g:soicode_make_clangdfile_on_all_cpp_files)
+        if (stridx(path, soi) < 0 || invalidfileending)
+            call soicode#MakeClangDFile()
+        else
+            call soicode#MakeClangDFile(expand("%:p:h"))
+        endif
     else
-        call soicode#MakeClangDFile(path)
+        if (stridx(path, soi) < 0 || invalidfileending)
+            finish
+        else
+            call soicode#MakeClangDFile(expand("%:p:h"))
+        endif
     endif
 endif
 
