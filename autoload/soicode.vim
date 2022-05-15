@@ -1,6 +1,6 @@
-let s:cppflags = "-Wall -Wextra -fdiagnostics-color=never -Wno-sign-compare -std=c++20 -O2 -static "
-
 let s:plugindir = expand('<sfile>:p:h:h')
+let s:cppflags = "-Wall -Wextra -fdiagnostics-color=never -Wno-sign-compare -std=c++20 -O2 -static "
+let s:soiheader = "-I " . s:plugindir . "/soiheaders/bundle/soiheader/"
 
 function! soicode#CreateStoml()
     let file = expand('%:p:r') . '.stoml'
@@ -49,6 +49,18 @@ function! soicode#LoadKeybindings()
     nnoremap <leader>et :SOIEditStoml <CR>
 endfunction
 
+function! soicode#MakeClangDFile(file)
+    let l:filepath = a:file
+    let l:path = l:filepath
+    while stridx(l:filepath, "soi") >= 0
+        let l:path = l:filepath
+        let l:filepath = l:filepath[:-2]
+    endwhile
+    " execute "!touch " . l:path . "/.clangd"
+    let compileFlags = "CompileFlags:\\n" . "  Add:\\n" . "    - \"" . s:soiheader . "\""
+    " execute "!echo '" . compileFlags ."' > " . l:path . "/.clangd"
+endfunction
+
 function! soicode#RunAllSamples()
     write
     let compiler = s:compileCppFile()
@@ -94,7 +106,7 @@ function! soicode#RunWithOwnInput()
 endfunction
 
 function! s:compileCppFile()
-    let output = system("g++ " . s:cppflags . expand('%:p') ." -o " . expand("%:p:r"))
+    let output = system("g++ " . s:cppflags . " " . s:soiheader . " ". expand('%:p') ." -o " . expand("%:p:r"))
     return output
 endfunction
 

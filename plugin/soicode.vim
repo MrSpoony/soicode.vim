@@ -27,6 +27,15 @@ else
     endif
 endif
 
+if (exists("g:soicode_make_clangdfile_on_all_cpp_files") && g:soicode_make_clangdfile_on_all_cpp_files)
+    call soicode#MakeClangDFile(path)
+else
+    if (stridx(path, soi) < 0 || invalidfileending)
+        finish
+    else
+        call soicode#MakeClangDFile(path)
+    endif
+endif
 
 if (exists("g:soicode_auto_insert_template") && g:soicode_auto_insert_template)
     autocmd BufNewFile *.cpp call soicode#InsertTemplate()
