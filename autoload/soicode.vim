@@ -125,8 +125,8 @@ function! s:runOneSample(sample, filename)
     let linenum = line('.')-1
     call matchaddpos("DiagnosticInfo", [linenum]) 
 
-    let realExpected = trim(substitute(expected, "[ \r\n]\\+", " ", "g"))
-    let realOutput = trim(substitute(output,     "[ \r\n]\\+", " ", "g"))
+    let realExpected = trim(expected);
+    let realOutput = trim(output);
     if realExpected == realOutput
         execute "normal! iSample '" . a:sample . "' successful!\n\<Esc>"
         let linenum = line('.')-1
