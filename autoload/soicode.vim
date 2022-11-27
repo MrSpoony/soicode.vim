@@ -114,7 +114,7 @@ function! s:compileCppFile()
 endfunction
 
 function! s:runOneSample(sample, filename)
-    let input = system('stoml -m ' . a:filename . '.stoml ' . a:sample . '.input')
+    let input = trim(system('stoml -m ' . a:filename . '.stoml ' . a:sample . '.input'))
     let expected = system('stoml -m ' . a:filename . '.stoml ' . a:sample . '.output')
 
     let command = 'echo "' . input . '" | ' . a:filename
