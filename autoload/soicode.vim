@@ -1,5 +1,5 @@
 let s:plugindir = expand('<sfile>:p:h:h')
-let s:cppflags = "-Wall -Wextra -fdiagnostics-color=never -Wno-sign-compare -std=c++20 -O2 -static "
+let s:cppflags = "-Wall -Wextra -fdiagnostics-color=never -std=c++20 -O2 "
 let s:soiheader = "-I " . s:plugindir . "/soiheaders/bundle/soiheader/"
 
 function! soicode#CreateStoml()
@@ -47,21 +47,6 @@ function! soicode#LoadKeybindings()
     nnoremap <leader>st :SOIInsertTemplate<CR>
     nnoremap <leader>ct :SOICreateStoml <CR>
     nnoremap <leader>et :SOIEditStoml <CR>
-endfunction
-
-function! soicode#MakeClangDFile(cwd)
-    if file == ""
-        let l:path = expand("%:p:h")
-        call s:createClangDFile(l:path)
-    else
-        let l:filepath = a:cwd
-        let l:path = l:filepath
-        while stridx(l:filepath, "soi") >= 0
-            let l:path = l:filepath
-            let l:filepath = l:filepath[:-2]
-        endwhile
-        call s:createClangDFile(l:path)
-    endif
 endfunction
 
 function! soicode#RunAllSamples()
@@ -159,10 +144,4 @@ function! s:runOneSample(sample, filename)
         endfor
     endif
     execute "normal! i\n\<Esc>"
-endfunction
-
-function! s:createClangDFile(path)
-    let compileFlags = "CompileFlags:\\n" . "  Add:\\n" . "    - \"" . s:soiheader . "\""
-    execute "!touch " . a:path . "/.clangd"
-    execute "!echo '" . compileFlags ."' > " . a:path . "/.clangd"
 endfunction
